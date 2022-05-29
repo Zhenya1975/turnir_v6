@@ -327,11 +327,11 @@ def ajaxfile():
 
 
 @home.route('/competition_finish/<int:fight_id>')
-def finish_red(fight_id):
+def finish(fight_id):
     fight_data = FightsDB.query.get(fight_id)
-    winner_red_reg_id = fight_data.red_fighter_id
+    winner_reg_id = fight_data.fight_winner_id
     competition_id = fight_data.competition_id
-    registration_data = RegistrationsDB.query.get(winner_red_reg_id)
+    registration_data = RegistrationsDB.query.get(winner_reg_id)
     participant_id = registration_data.participant_id
     winner_data = ParticipantsDB.query.get(participant_id)
     fights_data = FightsDB.query.filter_by(competition_id=competition_id).all()

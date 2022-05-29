@@ -58,8 +58,6 @@
         //var fight_id = $(this).data('id');
         var fight_id = $('#ajax_red_button').data('id');
 
-        console.log("fight_id c ajax кнопки: ", fight_id)
-
         $.ajax({
         url: '/ajaxfile',
         type: 'post',
@@ -67,7 +65,6 @@
         success: function(response){
             var final_status = response.final_status;
             var fight_id_response = response.fight_id;
-            console.log("final_status в ajax из responce: ", final_status)
             route_concat = "/competition_finish/"+ fight_id_response
 
 
@@ -88,7 +85,6 @@
 
       $('.select_red_fighter').click(function(){
         var fight_id = $(this).data('id');
-        console.log("fight_id c первой кнопки: ", fight_id)
         $.ajax({
         url: '/ajaxfile',
         type: 'post',
@@ -115,7 +111,6 @@
 
         $('.select_blue_fighter').click(function(){
         var fight_id = $(this).data('id');
-        //console.log("fight_id c первой кнопки: ", fight_id)
         $.ajax({
         url: '/ajaxfile',
         type: 'post',
@@ -142,12 +137,9 @@
 
 
 
-        // Обработка нажатия синего бойца в ajax
+      // Обработка нажатия синего бойца в ajax
       $(".blue_fighter_div").click('.select_blue_fighter_ajax', function(){
-
         var fight_id = $('#ajax_blue_button').data('id');
-
-        console.log("fight_id c ajax кнопки: ", fight_id)
 
         $.ajax({
         url: '/ajaxfile',
@@ -156,7 +148,6 @@
         success: function(response){
             var final_status = response.final_status;
             var fight_id_response = response.fight_id;
-
             route_concat = "/competition_finish/"+ fight_id_response
 
 
