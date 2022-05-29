@@ -291,6 +291,21 @@ def ajaxfile():
             fight_create_func(competition_id, current_round_number, final_status)
             delete_backlog_records(competition_id, current_round_number)
 
+        elif len(current_backlog_data) == 1 and len(next_round_backlog_data) > 1:
+            current_round_fighter_data = BacklogDB.query.filter_by(competition_id=competition_id,
+                                                                   round_number=current_round_number).first()
+            current_round_fighter_data.round_number = current_round_number + 1
+            try:
+                db.session.commit()
+            except Exception as e:
+                print("не удалось перекинуть бойца в бэклдог следующего круга", e)
+                db.session.rollback()
+            current_round_number = current_round_number + 1
+            final_status = 'continue'
+            fight_create_func(competition_id, current_round_number, final_status)
+            # удаляем из бэклога записи с бойцами
+            delete_backlog_records(competition_id, current_round_number)
+
         elif len(current_backlog_data) > 1:
             print("len(current_backlog_data) > 1")
             fight_create_func(competition_id, current_round_number, 'continue')
