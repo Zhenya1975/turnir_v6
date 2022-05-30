@@ -13,3 +13,4 @@ db = SQLAlchemy(metadata=MetaData(naming_convention=naming_convention))
 
 # db = SQLAlchemy()
 migrate = Migrate()
+

@@ -47,11 +47,21 @@
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script> -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.min.js"></script>
+
 
 <script>
     $(document).ready(function() {
+      var socket = io.connect();
+       // Мы получили с сервера сообщение по каналу 'after connect'
+        // Получив по каналу собщение мы отображаем его в консоли.
+        socket.on('after connect', function(msg){
+            console.log('After connect', msg.data);
+        });
 
       // Обработка нажатия красного бойца в ajax
       $(".red_fighter_div").click('.select_red_fighter_ajax', function(){
@@ -84,6 +94,7 @@
        });
 
       $('.select_red_fighter').click(function(){
+        socket.emit('Timer value changed', {'timer_sent': time});
         var fight_id = $(this).data('id');
         $.ajax({
         url: '/ajaxfile',
@@ -169,5 +180,7 @@
 
 } );
 </script>
+
+
 
 {% endblock %}
