@@ -94,7 +94,6 @@
        });
 
       $('.select_red_fighter').click(function(){
-        socket.emit('Timer value changed', {'timer_sent': time});
         var fight_id = $(this).data('id');
         $.ajax({
         url: '/ajaxfile',

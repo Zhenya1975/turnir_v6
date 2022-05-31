@@ -5,7 +5,7 @@ from flask_socketio import SocketIO, emit
 import os
 
 db_dir = os.path.abspath(os.path.dirname(__file__)) + "/database"
-print(db_dir)
+
 
 db = extensions.db
 migrate = extensions.migrate
