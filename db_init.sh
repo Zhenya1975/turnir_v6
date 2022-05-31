@@ -1,5 +1,5 @@
 #!/bin/bash
-rm fights.db
+rm database/fights.db
 rm -r migrations
 flask db init
 flask db migrate -m 'init'
